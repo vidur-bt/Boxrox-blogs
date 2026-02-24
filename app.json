@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Boxrox-blogs",
-    "slug": "Boxrox-blogs",
+    "slug": "boxrox-blogs",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,9 +9,14 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vidurbt.boxroxblogs",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "com.vidurbt.boxroxblogs",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -43,6 +48,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "93e46bd1-3091-40d0-8da6-8a50295265dc"
+      }
+    },
+    "owner": "vidur-bt"
   }
 }
