@@ -14,7 +14,7 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="CategoryScreen"
+        name="categories/CategoryScreen"
         options={{
           title: "Categories",
           tabBarIcon: ({ color, size }) => (
@@ -29,6 +29,12 @@ export default function TabsLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="settings" color={color} size={size} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="categories/[single-category]/index"
+        options={{
+          headerShown: false,
         }}
       />
     </Tabs>
