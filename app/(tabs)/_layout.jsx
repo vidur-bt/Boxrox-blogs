@@ -3,18 +3,23 @@ import { Tabs } from "expo-router";
 
 export default function TabsLayout() {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tabs.Screen
         name="HomeScreen"
         options={{
           title: "Home",
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="home" color={color} size={size} />
           ),
         }}
       />
       <Tabs.Screen
-        name="categories/CategoryScreen"
+        name="categories"
         options={{
           title: "Categories",
           tabBarIcon: ({ color, size }) => (
@@ -31,12 +36,12 @@ export default function TabsLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="categories/[single-category]/index"
+      {/* <Tabs.Screen
+        name="categories/[slug]"
         options={{
-          headerShown: false,
+          href: null, // Hide from tab bar
         }}
-      />
+      /> */}
     </Tabs>
   );
 }

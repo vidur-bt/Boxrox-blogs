@@ -14,14 +14,28 @@ export const postKeys = {
 };
 
 // Infinite scroll — feeds the home screen
-export function useInfinitePosts() {
+export function useInfinitePosts({ tag, search } = {}) {
   return useInfiniteQuery({
-    queryKey: postKeys.lists(),
-    queryFn: ({ pageParam = 0 }) => blogService.getPosts(pageParam, LIMIT),
+    queryKey: ["posts", { tag, search }],
+
+    queryFn: async ({ pageParam = 0 }) => {
+      if (tag) {
+        return blogService.getPostsByTag(tag, pageParam, LIMIT);
+      }
+
+      if (search) {
+        return blogService.searchPosts(search, pageParam, LIMIT);
+      }
+
+      return blogService.getPosts(pageParam, LIMIT);
+    },
+
     getNextPageParam: (lastPage, allPages) => {
       const fetched = allPages.length * LIMIT;
       return fetched < lastPage.total ? fetched : undefined;
     },
+
+    enabled: !search || search.trim().length > 2,
     initialPageParam: 0,
   });
 }

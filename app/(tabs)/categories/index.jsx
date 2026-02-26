@@ -13,7 +13,7 @@ export default function CategoryScreen() {
 
   const handleTagPress = (slug) => {
     // Navigate to a screen that shows posts for this tag
-    router.push(`${slug}`);
+    router.push(`/categories/${slug}`);
   };
 
   if (isLoading) {

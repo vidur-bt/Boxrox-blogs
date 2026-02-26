@@ -77,7 +77,13 @@ const UserAvatar = ({ userId, size = "sm" }) => {
 };
 
 // ─── Default Card ─────────────────────────────────────────────────────────────
-const DefaultCard = ({ post, onBookmark, isBookmarked, onPress }) => (
+const DefaultCard = ({
+  post,
+  onBookmark,
+  isBookmarked,
+  onPress,
+  onTagPress,
+}) => (
   <Pressable
     onPress={onPress}
     className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 active:opacity-75"
@@ -85,7 +91,9 @@ const DefaultCard = ({ post, onBookmark, isBookmarked, onPress }) => (
     {/* Tags row */}
     <View className="flex-row flex-wrap gap-1 mb-3">
       {post.tags?.slice(0, 3).map((tag) => (
-        <TagBadge key={tag} tag={tag} />
+        <TouchableOpacity key={tag} onPress={() => onTagPress(tag)}>
+          <TagBadge key={tag} tag={tag} />
+        </TouchableOpacity>
       ))}
     </View>
 
@@ -128,7 +136,13 @@ const DefaultCard = ({ post, onBookmark, isBookmarked, onPress }) => (
 );
 
 // ─── Featured Card ────────────────────────────────────────────────────────────
-const FeaturedCard = ({ post, onBookmark, isBookmarked, onPress }) => (
+const FeaturedCard = ({
+  post,
+  onBookmark,
+  isBookmarked,
+  onPress,
+  onTagPress,
+}) => (
   <Pressable
     onPress={onPress}
     className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-5 active:opacity-80"
@@ -138,11 +152,13 @@ const FeaturedCard = ({ post, onBookmark, isBookmarked, onPress }) => (
     <View className="flex-row items-center justify-between mb-4">
       <View className="flex-row gap-1">
         {post.tags?.slice(0, 2).map((tag) => (
-          <View key={tag} className="px-2 py-0.5 rounded-full bg-white/20">
-            <Text className="text-xs font-semibold text-white capitalize">
-              {tag}
-            </Text>
-          </View>
+          <TouchableOpacity key={tag} onPress={() => onTagPress(tag)}>
+            <View key={tag} className="px-2 py-0.5 rounded-full bg-white/20">
+              <Text className="text-xs font-semibold text-white capitalize">
+                {tag}
+              </Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </View>
       {onBookmark && (
@@ -184,7 +200,13 @@ const FeaturedCard = ({ post, onBookmark, isBookmarked, onPress }) => (
 );
 
 // ─── Compact Card ─────────────────────────────────────────────────────────────
-const CompactCard = ({ post, onBookmark, isBookmarked, onPress }) => (
+const CompactCard = ({
+  post,
+  onBookmark,
+  isBookmarked,
+  onPress,
+  onTagPress,
+}) => (
   <Pressable
     onPress={onPress}
     className="flex-row bg-white rounded-xl p-3 border border-gray-100 gap-3 active:opacity-75"
@@ -195,7 +217,11 @@ const CompactCard = ({ post, onBookmark, isBookmarked, onPress }) => (
     {/* Content */}
     <View className="flex-1">
       {/* Tag */}
-      {post.tags?.[0] && <TagBadge tag={post.tags[0]} />}
+      {post.tags?.[0] && (
+        <TouchableOpacity onPress={onTagPress}>
+          <TagBadge tag={post.tags[0]} />
+        </TouchableOpacity>
+      )}
 
       <Text
         className="text-sm font-bold text-gray-900 mt-1 mb-1 leading-snug"
@@ -232,6 +258,10 @@ export default function BlogCard({
     router.push(`/${post.id}`);
   };
 
+  const handleTagPress = (tag) => {
+    router.push(`/categories/${tag}`);
+  };
+
   if (variant === "featured") {
     return (
       <FeaturedCard
@@ -239,6 +269,7 @@ export default function BlogCard({
         onBookmark={onBookmark}
         isBookmarked={isBookmarked}
         onPress={handlePress}
+        onTagPress={handleTagPress}
       />
     );
   }
@@ -250,6 +281,7 @@ export default function BlogCard({
         onBookmark={onBookmark}
         isBookmarked={isBookmarked}
         onPress={handlePress}
+        onTagPress={handleTagPress}
       />
     );
   }
@@ -260,6 +292,7 @@ export default function BlogCard({
       onBookmark={onBookmark}
       isBookmarked={isBookmarked}
       onPress={handlePress}
+      onTagPress={handleTagPress}
     />
   );
 }
