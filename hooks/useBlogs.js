@@ -35,7 +35,7 @@ export function useInfinitePosts({ tag, search } = {}) {
       return fetched < lastPage.total ? fetched : undefined;
     },
 
-    enabled: !search || search.trim().length > 2,
+    enabled: search ? search.trim().length > 2 : true,
     initialPageParam: 0,
   });
 }

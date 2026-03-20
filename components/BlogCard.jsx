@@ -122,14 +122,14 @@ const DefaultCard = ({
 
       <View className="flex-row items-center gap-3">
         <ReactionsRow reactions={post.reactions} views={post.views} />
-        {onBookmark && (
+        {/* {onBookmark && (
           <TouchableOpacity
             onPress={() => onBookmark(post)}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Text className="text-lg">{isBookmarked ? "🔖" : "🏷️"}</Text>
           </TouchableOpacity>
-        )}
+        )} */}
       </View>
     </View>
   </Pressable>
@@ -145,7 +145,7 @@ const FeaturedCard = ({
 }) => (
   <Pressable
     onPress={onPress}
-    className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-5 active:opacity-80"
+    className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-5 active:opacity-80"
     style={{ backgroundColor: "#2563eb" }}
   >
     {/* Top row */}
@@ -161,11 +161,11 @@ const FeaturedCard = ({
           </TouchableOpacity>
         ))}
       </View>
-      {onBookmark && (
+      {/* {onBookmark && (
         <TouchableOpacity onPress={() => onBookmark(post)}>
           <Text className="text-xl">{isBookmarked ? "🔖" : "🏷️"}</Text>
         </TouchableOpacity>
-      )}
+      )} */}
     </View>
 
     {/* Title */}
@@ -227,10 +227,10 @@ const CompactCard = ({
         className="text-sm font-bold text-gray-900 mt-1 mb-1 leading-snug"
         numberOfLines={2}
       >
-        {post.title}
+        {post.title} abc
       </Text>
 
-      <View className="flex-row items-center justify-between">
+      {/* <View className="flex-row items-center justify-between">
         <ReactionsRow reactions={post.reactions} views={post.views} />
         {onBookmark && (
           <TouchableOpacity
@@ -240,7 +240,7 @@ const CompactCard = ({
             <Text className="text-sm">{isBookmarked ? "🔖" : "🏷️"}</Text>
           </TouchableOpacity>
         )}
-      </View>
+      </View> */}
     </View>
   </Pressable>
 );
@@ -264,13 +264,15 @@ export default function BlogCard({
 
   if (variant === "featured") {
     return (
-      <FeaturedCard
-        post={post}
-        onBookmark={onBookmark}
-        isBookmarked={isBookmarked}
-        onPress={handlePress}
-        onTagPress={handleTagPress}
-      />
+      <>
+        <FeaturedCard
+          post={post}
+          onBookmark={onBookmark}
+          isBookmarked={isBookmarked}
+          onPress={handlePress}
+          onTagPress={handleTagPress}
+        />
+      </>
     );
   }
 

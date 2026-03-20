@@ -3,7 +3,7 @@ import { useInfinitePosts } from "../hooks/useBlogs";
 import useAppStore from "../store/useAppStore";
 import BlogCard from "./BlogCard";
 
-export default function PostsListing({ tag }) {
+export default function PostsListing({ tag, search }) {
   const {
     data,
     fetchNextPage,
@@ -12,7 +12,7 @@ export default function PostsListing({ tag }) {
     isLoading,
     isError,
     refetch,
-  } = useInfinitePosts({ tag });
+  } = useInfinitePosts({ tag, search });
 
   const { bookmarks, addBookmark, removeBookmark } = useAppStore();
 
@@ -70,7 +70,7 @@ export default function PostsListing({ tag }) {
       onRefresh={refetch}
       ListFooterComponent={
         isFetchingNextPage ? (
-          <ActivityIndicator className="my-6" color="#2563eb" />
+          <ActivityIndicator className="my-12" color="#2563eb" />
         ) : null
       }
       ListEmptyComponent={

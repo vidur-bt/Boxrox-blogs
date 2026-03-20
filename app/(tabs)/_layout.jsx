@@ -36,12 +36,15 @@ export default function TabsLayout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="categories/[slug]"
+      <Tabs.Screen
+        name="SearchScreen"
         options={{
-          href: null, // Hide from tab bar
+          title: "Search",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="search" color={color} size={size} />
+          ),
         }}
-      /> */}
+      />
     </Tabs>
   );
 }
