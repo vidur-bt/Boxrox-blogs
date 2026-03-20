@@ -1,3 +1,4 @@
+import { Text, View } from "react-native";
 import { usePostComments } from "../hooks/useBlogs";
 
 export default function Comments({ postId }) {
@@ -18,10 +19,10 @@ export default function Comments({ postId }) {
   return (
     <View className="mt-4">
       <Text className="text-xl font-semibold mb-2">Comments</Text>
-      {comments.length === 0 ? (
+      {comments?.length === 0 ? (
         <Text className="text-gray-500">No comments yet</Text>
       ) : (
-        comments.map((comment) => (
+        comments?.map((comment) => (
           <View key={comment.id} className="mb-4">
             <Text className="text-gray-600">{comment.body}</Text>
           </View>

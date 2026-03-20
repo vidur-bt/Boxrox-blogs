@@ -1,6 +1,5 @@
 import { useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
-import Comments from "../../components/Comments";
 import { usePost } from "../../hooks/useBlogs";
 
 export default function SinglePostScreen() {
@@ -27,7 +26,7 @@ export default function SinglePostScreen() {
     <ScrollView className="flex-1 bg-white p-4">
       <Text className="text-2xl font-bold mb-2">{post.title}</Text>
       <Text className="text-base text-gray-800">{post.body}</Text>
-      <Comments postId={postId} />
+      {/* <Comments postId={postId} /> */}
     </ScrollView>
   );
 }
