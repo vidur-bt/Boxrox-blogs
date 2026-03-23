@@ -1,5 +1,5 @@
 import { useLocalSearchParams } from "expo-router";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
 import { usePost } from "../../hooks/useBlogs";
 
 export default function SinglePostScreen() {
@@ -24,6 +24,10 @@ export default function SinglePostScreen() {
 
   return (
     <ScrollView className="flex-1 bg-white p-4">
+      <Image
+        source={{ uri: post.image }}
+        className="w-full h-40 rounded-2xl mb-3"
+      />
       <Text className="text-2xl font-bold mb-2">{post.title}</Text>
       <Text className="text-base text-gray-800">{post.body}</Text>
       {/* <Comments postId={postId} /> */}

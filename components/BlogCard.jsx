@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { Pressable, Text, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 
 /**
  * BlogCard Component — adapted for dummyjson.com/posts
@@ -88,6 +88,11 @@ const DefaultCard = ({
     onPress={onPress}
     className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 active:opacity-75"
   >
+    <Image
+      source={{ uri: post.image }}
+      className="w-full h-40 rounded-2xl mb-3"
+    />
+
     {/* Tags row */}
     <View className="flex-row flex-wrap gap-1 mb-3">
       {post.tags?.slice(0, 3).map((tag) => (
@@ -148,6 +153,10 @@ const FeaturedCard = ({
     className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-5 active:opacity-80"
     style={{ backgroundColor: "#2563eb" }}
   >
+    <Image
+      source={{ uri: post.image }}
+      className="w-full h-40 rounded-2xl mb-3"
+    />
     {/* Top row */}
     <View className="flex-row items-center justify-between mb-4">
       <View className="flex-row gap-1">
@@ -211,6 +220,10 @@ const CompactCard = ({
     onPress={onPress}
     className="flex-row bg-white rounded-xl p-3 border border-gray-100 gap-3 active:opacity-75"
   >
+    <Image
+      source={{ uri: post.image }}
+      className="w-full h-40 rounded-2xl mb-3"
+    />
     {/* Left color strip acting as visual identity */}
     <View className="w-1 rounded-full bg-blue-500" />
 
@@ -261,6 +274,11 @@ export default function BlogCard({
   const handleTagPress = (tag) => {
     router.push(`/categories/${tag}`);
   };
+
+  // const post = {
+  //   ...post,
+  //   image: getRandomImage,
+  // };
 
   if (variant === "featured") {
     return (

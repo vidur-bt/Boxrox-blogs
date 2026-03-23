@@ -30,6 +30,18 @@ export function useInfinitePosts({ tag, search } = {}) {
       return blogService.getPosts(pageParam, LIMIT);
     },
 
+    // ✅ Inject image here
+    select: (data) => ({
+      ...data,
+      pages: data.pages.map((page) => ({
+        ...page,
+        posts: page.posts.map((post) => ({
+          ...post,
+          image: blogService.getPostImage(post.id),
+        })),
+      })),
+    }),
+
     getNextPageParam: (lastPage, allPages) => {
       const fetched = allPages.length * LIMIT;
       return fetched < lastPage.total ? fetched : undefined;
@@ -46,7 +58,15 @@ export function usePost(id) {
     queryKey: postKeys.detail(id),
     queryFn: () => blogService.getPostById(id),
     enabled: !!id,
+    select: (data) => ({
+      ...data,
+      image: blogService.getPostImage(data.id),
+    }),
   });
+}
+
+export function useRandomImage(seed) {
+  return blogService.getRandomImage(seed);
 }
 
 export function useTags() {
